@@ -14,7 +14,7 @@ public class Camera_controller : MonoBehaviour
     private float currentPlayerY;
     private float currentCameraX;
     private float currentCameraY;
-    
+    public float Smooth = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class Camera_controller : MonoBehaviour
         currentCameraY = cameraPos.transform.position.y;
         if(currentPlayerX > currentCameraX + 14.5)
         {
+           // float x = Mathf.Lerp(currentCameraX + 14.5f, 29, Smooth * Time.deltaTime) - 14.5f;
             transform.Translate(29, 0, 0);
         }
         else if(currentPlayerX < currentCameraX - 14.5)

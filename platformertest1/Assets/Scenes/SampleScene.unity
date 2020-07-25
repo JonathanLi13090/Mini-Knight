@@ -258,6 +258,7 @@ MonoBehaviour:
   changeY: 10
   playerPos: {fileID: 2012582259}
   cameraPos: {fileID: 815546990}
+  Smooth: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -326,6 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554673831}
   - component: {fileID: 554673830}
+  - component: {fileID: 554673833}
   - component: {fileID: 554673829}
   - component: {fileID: 554673828}
   - component: {fileID: 554673827}
@@ -491,6 +493,19 @@ CircleCollider2D:
   m_Offset: {x: -0.0016993496, y: -0.1507431}
   serializedVersion: 2
   m_Radius: 0.3332116
+--- !u!114 &554673833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554673826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd80b71bfa6f694fa543e0aa0a193aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
 --- !u!1 &813460407
 GameObject:
   m_ObjectHideFlags: 0
@@ -5192,6 +5207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider_enemy1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1257776321637658495, guid: b60baaeb39d2b1e4b8f5f4b68055608f,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b60baaeb39d2b1e4b8f5f4b68055608f, type: 3}
 --- !u!1 &1995797934
@@ -5321,6 +5341,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider_enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 1257776321637658495, guid: b60baaeb39d2b1e4b8f5f4b68055608f,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b60baaeb39d2b1e4b8f5f4b68055608f, type: 3}
 --- !u!1001 &2978540966993089655
@@ -5394,6 +5419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bat_enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978540966426190122, guid: f32a3f46aed6812418e3210525486ad1,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32a3f46aed6812418e3210525486ad1, type: 3}

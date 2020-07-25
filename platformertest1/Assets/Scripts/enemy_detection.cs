@@ -31,7 +31,7 @@ public class enemy_detection : MonoBehaviour
                 health = health -= 1;
                 Debug.Log(health);
             }
-            yield return new WaitForSeconds(1);
+
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class player_controller : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator animator;
 
     public float speed = 100f;
     public float ladderSpeed = 100f;
@@ -19,6 +20,29 @@ public class player_controller : MonoBehaviour
     public LayerMask whatIsGround;
     public LayerMask whatIsLadder;
 
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+    public int attackDamage = 1;
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
+        
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+
+        if (isGrounded == true)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", true);
+        }
+    }
     public void FixedUpdate()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, ladderDistance, whatIsLadder);
@@ -72,5 +96,17 @@ public class player_controller : MonoBehaviour
         Vector2 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    void Attack()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        //play attack animation
+        foreach (Collider2D enemy in hitEnemies)
+        {   
+            enemy.GetComponent<enemy>().TakeDamage(attackDamage);
+            //Destroy(enemy.gameObject);
+            Debug.Log("player smacked enemy");
+        } 
     }
 }

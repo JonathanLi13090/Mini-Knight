@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1257776321637658493}
   - component: {fileID: 1257776321637650560}
+  - component: {fileID: 8750517069245981013}
   - component: {fileID: 1257776321637658492}
   - component: {fileID: 1257776321637650563}
   - component: {fileID: 1257776321637650562}
   - component: {fileID: 1257776321637650561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: spider_enemy1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f3ed03c82fc9a4f96d520f7e3141c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 1
   checkDistance: 0.5
   checkRadius: 0.25
   groundDetection: {fileID: 1257776322170861970}
@@ -58,6 +59,19 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &8750517069245981013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257776321637658495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd11efa5e8910504da87a37179c52081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
 --- !u!212 &1257776321637658492
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class enemy_detection : MonoBehaviour
 {
     public float health = 4f;
     public List<Animator> HealthBubbles;
+    public float damageTime = 0f;
     public float invincibilityTime = 10f;
     // Start is called before the first frame update
     void Start()
@@ -23,24 +24,22 @@ public class enemy_detection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-            if (health < 1)
+            if (damageTime + invincibilityTime < Time.fixedTime)
             {
-                Debug.Log("player died");
-            }
-            else
-            {
-                health = health -= 1;
-                SetBubbles();
-                Debug.Log(health);
-                for (int i = 0; i < 10; i += 1)
+                damageTime = Time.fixedTime;
+                if (health < 1)
                 {
-                    invincibilityTime -= Time.deltaTime;
-                    if (invincibilityTime < 0)
-                    {
-                        break;
-                    }
+                    Debug.Log("player died");
+                }
+                else
+                {
+                    health = health -= 1;
+                    SetBubbles();
+                    Debug.Log(health);
+
                 }
             }
+            
 
         }
     }

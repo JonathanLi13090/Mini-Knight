@@ -6,11 +6,14 @@ public class player_controller : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
+    public Transform ShieldPoint;
 
     public float speed = 100f;
     public float ladderSpeed = 100f;
     public float jumpForce = 100f;
     private bool facingRight = true;
+    public Vector2 shieldSize = new Vector2(1f, 2f);
+    public float shield_Size = 2f;
 
     private bool isGrounded;
     private bool isClimbing;
@@ -21,18 +24,38 @@ public class player_controller : MonoBehaviour
     public LayerMask whatIsLadder;
 
     public Transform attackPoint;
+    public Vector2 StillPoint = new Vector2(-0.43f, -0.2f);
+    public Vector2 MovingPoint = new Vector2(-0.53f, -0.2f);
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int attackDamage = 1;
+    public int ShieldDamage = 1;
+    public int shieldUpForce = 6;
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isClimbing)
         {
-            Attack();
+            if (isGrounded == true)
+            {
+                Attack();
+            }
+            else
+            {
+                ShieldAttack();
+            }
         }
         
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+
+        if (Mathf.Abs(rb.velocity.x) > 1f)
+        {
+            attackPoint.localPosition = MovingPoint;
+        }
+        else
+        {
+            attackPoint.localPosition = StillPoint;  
+        }
 
         if (isGrounded == true)
         {
@@ -100,6 +123,7 @@ public class player_controller : MonoBehaviour
 
     void Attack()
     {
+        animator.SetTrigger("IsAttacking");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         //play attack animation
         foreach (Collider2D enemy in hitEnemies)
@@ -108,5 +132,35 @@ public class player_controller : MonoBehaviour
             //Destroy(enemy.gameObject);
             Debug.Log("player smacked enemy");
         } 
+    }
+
+    void ShieldAttack()
+    {                                      
+        animator.SetTrigger("IsAttacking");
+
+        //Collider2D[] hitStuff = Physics2D.OverlapBoxAll(ShieldPoint.position, shieldSize, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(ShieldPoint.position, shieldSize, enemyLayers);
+        //why does overlapboxall not work?
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(ShieldPoint.position, shield_Size, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<enemy>().TakeDamage(attackDamage);
+            Debug.Log("player smacked something");
+            rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
+        }
+
+        if (hitEnemies != null)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
+        }
+            //if (hitEnemies != null)
+            //{
+            //    rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
+            //}
+            //new collider 
+            //when touch enemy deal damage and add rb force up
+            //when touch ground move away collider    
+      
+
     }
 }

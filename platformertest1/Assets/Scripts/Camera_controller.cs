@@ -41,24 +41,5 @@ public class Camera_controller : MonoBehaviour
 
         //transform.position = new Vector3(x, y, transform.position.z);
         transform.position = Vector3.MoveTowards(cameraPos.position, new Vector3(x, y, transform.position.z), Smooth * Time.deltaTime);
-
-
-
-        //if (currentPlayerX > currentCameraX + 14.5)
-        //{
-            //transform.position = Vector3.MoveTowards(transform.position, , 0);
-        //}
-        //else if(currentPlayerX < currentCameraX - 14.5)
-        //{
-        //    transform.Translate(-29, 0, 0);
-        //}
-        //else if(currentPlayerY > currentCameraY + 7.5)
-        //{
-        //    transform.Translate(0, 13, 0);
-        //}
-        //else if (currentPlayerY < currentCameraY - 7.5)
-        //{
-        //    transform.Translate(0, -13, 0);
-        //}
     }
 }

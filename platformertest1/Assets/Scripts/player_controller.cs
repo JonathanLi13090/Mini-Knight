@@ -138,29 +138,38 @@ public class player_controller : MonoBehaviour
     {                                      
         animator.SetTrigger("IsAttacking");
 
+        StartCoroutine(ShieldAttackCoroutine());
+
         //Collider2D[] hitStuff = Physics2D.OverlapBoxAll(ShieldPoint.position, shieldSize, enemyLayers);
         //Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(ShieldPoint.position, shieldSize, enemyLayers);
         //why does overlapboxall not work?
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(ShieldPoint.position, shield_Size, enemyLayers);
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<enemy>().TakeDamage(attackDamage);
-            Debug.Log("player smacked something");
-            rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
-        }
+       
 
-        if (hitEnemies != null)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
-        }
-            //if (hitEnemies != null)
-            //{
-            //    rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
-            //}
-            //new collider 
-            //when touch enemy deal damage and add rb force up
-            //when touch ground move away collider    
-      
+    }
 
+    private IEnumerator ShieldAttackCoroutine()
+    {
+        bool done = false;
+        while (!done)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(ShieldPoint.position, shield_Size, enemyLayers);
+            
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                enemy.GetComponent<enemy>().TakeDamage(attackDamage);
+                Debug.Log("player smacked something");
+            }
+
+            if (hitEnemies.Length > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, shieldUpForce);
+                done = true;
+            }
+            else if (isGrounded) done = true;
+            else
+            {
+                yield return null;
+            }
+        }
     }
 }

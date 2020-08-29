@@ -22,7 +22,7 @@ public class Camera_controller : MonoBehaviour
     void Start()
     {
         cameraHalfHeight = GetComponent<Camera>().orthographicSize;
-        cameraHalfWidth = cameraHalfHeight * ((float)(Screen.width / Screen.height));
+        cameraHalfWidth = cameraHalfHeight * ((float)(Screen.width / (float)Screen.height));
     }
 
     // Update is called once per frame

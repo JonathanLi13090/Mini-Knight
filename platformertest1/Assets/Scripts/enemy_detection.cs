@@ -14,12 +14,6 @@ public class enemy_detection : MonoBehaviour
         SetBubbles();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("enemy"))

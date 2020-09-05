@@ -5,6 +5,7 @@ using UnityEngine;
 public class enemy_detection : MonoBehaviour
 {
     public float health = 4f;
+    public GameObject checkPoint;
     public List<Animator> HealthBubbles;
     public float damageTime = 0f;
     public float invincibilityTime = 10f;
@@ -24,6 +25,8 @@ public class enemy_detection : MonoBehaviour
                 if (health < 1)
                 {
                     Debug.Log("player died");
+                    health = 4f;
+                    checkPoint.GetComponent<Checkpoints>().goToCheckpoint();
                 }
                 else
                 {

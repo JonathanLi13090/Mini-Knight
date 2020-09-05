@@ -7,7 +7,7 @@ public class player_controller : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public Transform ShieldPoint;
-
+    
     public float speed = 100f;
     public float ladderSpeed = 100f;
     public float jumpForce = 100f;
